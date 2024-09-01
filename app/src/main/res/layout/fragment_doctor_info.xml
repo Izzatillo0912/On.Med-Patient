@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    tools:context=".presentation.ui.fragments.doctorInfo.DoctorInfoFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Toshtemirov Muhammadqodir"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/doctor_image" />
+
+    <ImageView
+        android:id="@+id/doctor_image"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_doctor_image_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ripple_radius_50"
+        android:padding="12dp"
+        android:src="@drawable/ic_arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <TextView
+            android:id="@+id/tv_speciality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_portfel"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Developer"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Ko'rik narxi : 35,000 so'm"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_doctor_queues"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/btn_blue"
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Ko'rik uchun navbatga kiritish"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rectangle_stroke_radius_14"
+        android:fontFamily="@font/montserrat_regular"
+        android:paddingStart="15dp"
+        android:paddingTop="45dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="70dp"
+        android:text="Farg’ona viloyati Toshloq tumani Zarkent shaxarchasidagi Choynak piyolaga yetmasdan ambulatoriya yonida"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_doctor_queues"
+        app:layout_constraintStart_toStartOf="@+id/btn_doctor_queues"
+        app:layout_constraintTop_toBottomOf="@+id/btn_doctor_queues" />
+
+    <TextView
+        android:id="@+id/tv_title_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Ish xona manzili :"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_address"
+        app:layout_constraintStart_toStartOf="@+id/tv_address"
+        app:layout_constraintTop_toTopOf="@+id/tv_address" />
+
+    <Button
+        android:id="@+id/btn_go_map"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#C3F4C8"
+        android:drawableEnd="@drawable/ic_map"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Xaritadan ko'rish"
+        android:textColor="#113F18"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_address"
+        app:layout_constraintEnd_toEndOf="@+id/tv_address"
+        app:layout_constraintStart_toStartOf="@+id/tv_address" />
+
+        <TextView
+            android:id="@+id/tv_doctor_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rectangle_stroke_radius_14"
+            android:fontFamily="@font/montserrat_regular"
+            android:paddingStart="15dp"
+            android:paddingTop="45dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="20dp"
+            android:text="1998 yil Altay Davlat Tibbiyot Universitetining “davolash ishi” fakulьtetini a’lo baholarga bitirdi. 2000 yil Buxoro Davlat tibbiyot institutida jarrohlik mutaxassisligi bo‘yicha klinik ordinaturani bitirdi. 2001 yildan 2002 yilgacha Rossiya Federatsiyasi Biysk shahri tibbiyot birlashmasida jarroh bo‘lib ishladi"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btn_doctor_queues"
+            app:layout_constraintStart_toStartOf="@+id/btn_doctor_queues"
+            app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+
+    <TextView
+        android:id="@+id/tv_title_doctor_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Shifokor haqida :"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_address"
+        app:layout_constraintStart_toStartOf="@+id/tv_address"
+        app:layout_constraintTop_toTopOf="@+id/tv_doctor_info" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

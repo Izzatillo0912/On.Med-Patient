@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="green">#29FF4C</color>
+    <color name="yellow">#EDFF23</color>
+    <color name="main_background">#F6F7F8</color>
+    <color name="login_status_bar_background_color">#CCF2FB</color>
+    <color name="ripple_color">#C9D8F4</color>
+    <color name="bottom_selected_blue_color">#3E4DD8</color>
+    <color name="bottom_not_selected_icon_color">#857B7B</color>
+    <color name="bottom_not_selected_text_color">#433C3C</color>
+    <color name="btn_blue">#2DA5FC</color>
+    <color name="btn_light_blue">#5EBBFF</color>
+    <color name="btn_gray">#F6F3F3</color>
+    <color name="dark_gray">#E9E9E9</color>
+    <color name="no_image">#F7FABF</color>
+    <color name="btn_back_24">#40000000</color>
+    <color name="btn_light_green">#C3F4C8</color>
+</resources>
