@@ -6,42 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ui.fragments.interview.InterviewFragment">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/interview_top_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/interview_top_right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_interview"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/interview_center"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/interview_bottom_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="30dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="-30dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="Endi shifokorlarning qabuliga va tekshiruv turlariga onlayn navbat olib borishingiz mumkun!"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ic_image"
+        android:gravity="center"
+        android:text="Shifokorlar qabuliga va tekshiruv turlariga istagan joyingizdan turib online navbat olib boring!"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_interview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:lineHeight="30dp" />
-
-    <ImageView
-        android:id="@+id/ic_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_interview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:lineHeight="35dp" />
 
     <Button
-        android:id="@+id/btn_done"
-        android:layout_width="0dp"
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="80dp"
         android:backgroundTint="@color/btn_blue"
+        android:drawableEnd="@drawable/ic_arrow_right_go"
         android:fontFamily="@font/montserrat_medium"
-        android:text="Ilovaga kirish"
+        android:text="Kirish"
         android:textColor="@color/white"
         android:textSize="16sp"
+        app:iconPadding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

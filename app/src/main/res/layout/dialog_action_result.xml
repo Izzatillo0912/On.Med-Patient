@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:background="@drawable/rectangle_r20"
+    android:paddingBottom="20dp">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/response_anim"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="anim_searching.json"
+        app:lottie_loop="true" />
+
+    <TextView
+        android:id="@+id/response_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_regular"
+        android:gravity="center"
+        android:text="Iltimos kuting, sizning shaxsingiz tekshirilmoqda..."
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/response_anim"
+        app:layout_constraintStart_toStartOf="@+id/response_anim"
+        app:layout_constraintTop_toBottomOf="@+id/response_anim"
+        app:lineHeight="20dp" />
+
+    <Button
+        android:id="@+id/btn_dismiss"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="@color/btn_gray"
+        android:elegantTextHeight="true"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Qaytish"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_retry"
+        app:layout_constraintStart_toStartOf="@+id/response_message"
+        app:layout_constraintTop_toBottomOf="@+id/response_message"
+        app:rippleColor="@color/ripple_color"
+        tools:targetApi="p" />
+
+    <Button
+        android:id="@+id/btn_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:backgroundTint="@color/btn_blue"
+        android:elegantTextHeight="true"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Qayta urunish"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_dismiss"
+        app:layout_constraintEnd_toEndOf="@+id/response_message"
+        app:layout_constraintStart_toEndOf="@+id/btn_dismiss"
+        app:layout_constraintTop_toTopOf="@+id/btn_dismiss"
+        app:rippleColor="@color/ripple_color"
+        tools:targetApi="p" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

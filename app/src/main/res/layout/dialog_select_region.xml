@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/region_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Viloyatni belgilang :"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/spinner_region"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.skydoves.powerspinner.PowerSpinnerView
+            android:id="@+id/spinner_region"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/ripple_radius_50"
+            android:backgroundTint="@color/btn_gray"
+            android:elegantTextHeight="true"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center|start"
+            android:hint="Farg'ona viloyati"
+            android:paddingStart="20dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/region_title"
+            app:spinner_arrow_gravity="end"
+            app:spinner_arrow_padding="10dp"
+            app:spinner_arrow_tint="@color/black"
+            app:spinner_popup_animation="bounce"
+            app:spinner_popup_background="@drawable/ripple_radius_14"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/district_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Tumanni belgilang :"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/spinner_region"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_region" />
+
+        <com.skydoves.powerspinner.PowerSpinnerView
+            android:id="@+id/spinner_district"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/ripple_radius_50"
+            android:backgroundTint="@color/btn_gray"
+            android:elegantTextHeight="true"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center|start"
+            android:hint="Toshloq tumani"
+            android:paddingStart="20dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/district_title"
+            app:spinner_arrow_gravity="end"
+            app:spinner_arrow_padding="10dp"
+            app:spinner_arrow_tint="@color/black"
+            app:spinner_popup_animation="bounce"
+            app:spinner_popup_background="@drawable/ripple_radius_14"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/btn_select"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/btn_blue"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Belgilash"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_district"
+            app:layout_constraintStart_toStartOf="@+id/spinner_district"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_district" />
+
+        <Button
+            android:id="@+id/btn_dismiss"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/btn_gray"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Oynani yopish"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_district"
+            app:layout_constraintStart_toStartOf="@+id/spinner_district"
+            app:layout_constraintTop_toBottomOf="@+id/btn_select" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

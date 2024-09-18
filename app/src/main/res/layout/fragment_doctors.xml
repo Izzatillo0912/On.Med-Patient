@@ -10,7 +10,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/ripple_radius_50"
                 android:padding="12dp"
                 android:src="@drawable/ic_profile"
@@ -93,7 +93,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_my_queue_for_doctor"
-                tools:listitem="@layout/item_my_queue_for_doctor" />
+                tools:listitem="@layout/item_my_queues_for_doctors" />
 
             <TextView
                 android:id="@+id/tv_all_doctor"
@@ -111,6 +111,7 @@
                 android:id="@+id/rv_doctors"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_all_doctor"
@@ -126,9 +127,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="60dp"
         android:backgroundTint="@color/btn_blue"
-        android:drawableEnd="@drawable/ic_arrow_right"
+        android:drawableEnd="@drawable/ic_arrow_right_go"
         android:fontFamily="@font/montserrat_medium"
         android:text="Diagnostikalar"
         android:textColor="@color/white"

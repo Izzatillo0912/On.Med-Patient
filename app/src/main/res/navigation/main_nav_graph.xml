@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/doctorsFragment">
+
+    <fragment
+        android:id="@+id/doctorsFragment"
+        android:name="com.arfomax.onmed.presentation.ui.fragments.doctors.DoctorsFragment"
+        android:label="fragment_doctors"
+        tools:layout="@layout/fragment_doctors" >
+        <action
+            android:id="@+id/action_doctorsFragment_to_doctorInfoFragment"
+            app:destination="@id/doctorInfoFragment" />
+        <action
+            android:id="@+id/action_doctorsFragment_to_doctorQueuesFragment"
+            app:destination="@id/doctorQueuesFragment" />
+        <action
+            android:id="@+id/action_doctorsFragment_to_diagnosticsFragment"
+            app:destination="@id/diagnosticsFragment" />
+        <action
+            android:id="@+id/action_doctorsFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_doctorsFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorInfoFragment"
+        android:name="com.arfomax.onmed.presentation.ui.fragments.doctorInfo.DoctorInfoFragment"
+        android:label="fragment_doctor_info"
+        tools:layout="@layout/fragment_doctor_info" >
+        <action
+            android:id="@+id/action_doctorInfoFragment_to_doctorQueuesFragment"
+            app:destination="@id/doctorQueuesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorQueuesFragment"
+        android:name="com.arfomax.onmed.presentation.ui.fragments.doctorQueues.DoctorQueuesFragment"
+        android:label="fragment_doctor_queues"
+        tools:layout="@layout/fragment_doctor_queues" >
+        <action
+            android:id="@+id/action_doctorQueuesFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/diagnosticsFragment"
+        android:name="com.arfomax.onmed.presentation.ui.fragments.diagnostics.DiagnosticsFragment"
+        android:label="fragment_diagnostics"
+        tools:layout="@layout/fragment_diagnostics" >
+        <action
+            android:id="@+id/action_diagnosticsFragment_to_diagnosticInfoFragment"
+            app:destination="@id/diagnosticInfoFragment" />
+        <action
+            android:id="@+id/action_diagnosticsFragment_to_diagnosticQueuesFragment"
+            app:destination="@id/diagnosticQueuesFragment" />
+        <action
+            android:id="@+id/action_diagnosticsFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/diagnosticInfoFragment"
+        android:name="com.arfomax.onmed.presentation.ui.fragments.diagnosticInfo.DiagnosticInfoFragment"
+        android:label="fragment_diagnostic_info"
+        tools:layout="@layout/fragment_diagnostic_info" >
+        <action
+            android:id="@+id/action_diagnosticInfoFragment_to_diagnosticQueuesFragment"
+            app:destination="@id/diagnosticQueuesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/diagnosticQueuesFragment"
+        android:name="com.arfomax.onmed.presentation.ui.fragments.diagnosticQueues.DiagnosticQueuesFragment"
+        android:label="fragment_diagnostic_queues"
+        tools:layout="@layout/fragment_diagnostic_queues" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.arfomax.onmed.presentation.ui.fragments.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_numberVerificationFragment"
+            app:destination="@id/numberVerificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/numberVerificationFragment"
+        android:name="com.arfomax.onmed.presentation.ui.fragments.numberVerification.NumberVerificationFragment"
+        android:label="fragment_number_verification"
+        tools:layout="@layout/fragment_number_verification" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.arfomax.onmed.presentation.ui.fragments.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

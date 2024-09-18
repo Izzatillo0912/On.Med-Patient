@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/indicator_background">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white"/>
+            <corners android:radius="50dp"/>
+        </shape>
+    </item>
+
+
+    <item android:id="@+id/indicator_progress">
+
+        <scale android:scaleWidth="100%">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/btn_blue"/>
+                <corners android:radius="50dp"/>
+            </shape>
+        </scale>
+    </item>
+
+</layer-list>
