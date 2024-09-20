@@ -11,6 +11,8 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.arfomax.doctorOnMed.presentation.ui.dialog.actionResult.ActionResultSetAnimation
+import com.arfomax.onmed.R
+import com.arfomax.onmed.data.common.model.PagingModel
 import com.arfomax.onmed.data.network.diagnostics.model.DiagnosticsModel
 import com.arfomax.onmed.data.network.myQueuesForDiagnostics.MyQueuesForDiagnosticsModel
 import com.arfomax.onmed.databinding.FragmentDiagnosticsBinding
@@ -21,7 +23,10 @@ import com.arfomax.onmed.presentation.ui.fragments.diagnostics.viewModels.Diagno
 import com.arfomax.onmed.presentation.ui.fragments.diagnostics.viewModels.MyQueuesForDiagnosticsViewModel
 import com.arfomax.onmed.presentation.ui.utils.EditTextToStateFlow.getDataFromNetWork
 import com.arfomax.onmed.presentation.ui.utils.EditTextToStateFlow.getQueryTextChangeStateFlow
+import com.arfomax.onmed.presentation.utils.Constants
 import com.arfomax.onmed.presentation.utils.PageState
+import com.arfomax.onmed.presentation.utils.RuntimeCache
+import com.orhanobut.hawk.Hawk
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -65,6 +70,12 @@ class DiagnosticsFragment : Fragment() {
 
         myQueueForDiagnosticsViewModel.getMyQueuesForDiagnostics()
 
+        binding.btnProfile.setOnClickListener {
+            if (Hawk.get<Boolean>(Constants.USER_VERIFIED) == true)
+                findNavController().navigate(R.id.action_diagnosticsFragment_to_profileFragment)
+            else findNavController().navigate(R.id.action_diagnosticsFragment_to_loginFragment)
+        }
+
         binding.btnGoDoctors.setOnClickListener { findNavController().popBackStack() }
 
         lifecycleScope.launch {
@@ -75,6 +86,16 @@ class DiagnosticsFragment : Fragment() {
             }.distinctUntilChanged().flatMapLatest { query -> getDataFromNetWork(query) }.collect { doctorName->
                 diagnosticsViewModel.getAllDiagnostics(doctorName)
             }
+        }
+
+        myQueuesForDiagnosticsAdapter.queueForDoctorClickListener {
+            RuntimeCache.combineInspection = it.diagnosticsInspection
+            findNavController().navigate(R.id.action_diagnosticsFragment_to_diagnosticQueuesFragment)
+        }
+
+        diagnosticsAdapter.diagnosticClickListener {
+            RuntimeCache.diagnosticsModel = it
+            findNavController().navigate(R.id.action_diagnosticsFragment_to_diagnosticInfoFragment)
         }
 
     }
@@ -124,8 +145,8 @@ class DiagnosticsFragment : Fragment() {
 
             is PageState.IsSuccess -> {
                 actionResultDialog2.dismiss()
-                val data = state.data as ArrayList<MyQueuesForDiagnosticsModel>
-                myQueuesForDiagnosticsAdapter.submitList(data)
+                val data = state.data as PagingModel<MyQueuesForDiagnosticsModel>
+                myQueuesForDiagnosticsAdapter.submitList(data.results)
             }
         }
     }

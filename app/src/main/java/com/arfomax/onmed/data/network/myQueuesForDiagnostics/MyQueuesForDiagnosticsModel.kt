@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName
 data class MyQueuesForDiagnosticsModel(
     @SerializedName("date")
     val date: String,
+    @SerializedName("diagnostics_name")
+    val diagnosticName: String,
     @SerializedName("diagnostics_inspection")
     val diagnosticsInspection: CombineInspection,
     @SerializedName("fio")

@@ -7,12 +7,14 @@
     android:layout_marginTop="8dp"
     android:layout_marginEnd="15dp"
     android:layout_marginBottom="8dp"
-    app:cardBackgroundColor="@color/btn_blue"
     app:cardCornerRadius="14dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_inspection_qeueue"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/ripple_radius_14"
+        android:backgroundTint="@color/btn_blue">
 
         <TextView
             android:id="@+id/inspection_name"
@@ -25,12 +27,12 @@
             android:text="E.M.E.R.T.E"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintEnd_toStartOf="@+id/inpsection_price"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/inpsection_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
@@ -53,7 +55,7 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="@+id/inpsection_price"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inspection_name"
             app:lineHeight="25dp" />

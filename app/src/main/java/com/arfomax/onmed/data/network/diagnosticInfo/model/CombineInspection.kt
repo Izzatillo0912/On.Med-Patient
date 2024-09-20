@@ -21,11 +21,13 @@ data class CombineInspection(
     @SerializedName("inspection")
     val inspection: Inspection,
     @SerializedName("price")
-    val price: Int,
+    val price: Double,
     @SerializedName("start_lunch_time")
     val startLunchTime: String,
     @SerializedName("start_work_time")
     val startWorkTime: String,
+    @SerializedName("doctors")
+    val doctors: ArrayList<InspectionDoctorModel>,
     @SerializedName("workday")
     val workday: String
 )

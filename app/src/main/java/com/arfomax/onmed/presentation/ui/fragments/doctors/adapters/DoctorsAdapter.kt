@@ -43,6 +43,7 @@ class DoctorsAdapter : RecyclerView.Adapter<DoctorsAdapter.ViewHolder>() {
             }
 
             if (layoutPosition+1 == list.size) binding.root.margin(bottom = 125f)
+            else binding.root.margin(bottom = 8f)
         }
     }
 

@@ -1,10 +1,11 @@
 package com.arfomax.onmed.data.network.queueForDoctor.model
 
 
+import com.arfomax.onmed.data.network.diagnosticInfo.model.CombineInspection
 import com.arfomax.onmed.data.network.doctors.model.DoctorInfoModel
 import com.google.gson.annotations.SerializedName
 
-data class QueueModel(
+data class   QueueModel(
     val id : Int,
     val doctor : DoctorInfoModel,
     @SerializedName("date")
@@ -12,7 +13,7 @@ data class QueueModel(
     @SerializedName("patient")
     val patientId: Int?,
     @SerializedName("diagnostics_inspection")
-    val diagnosticsInspection: Int,
+    val diagnosticsInspection: CombineInspection,
     @SerializedName("fio")
     val fio: String,
     @SerializedName("phone")

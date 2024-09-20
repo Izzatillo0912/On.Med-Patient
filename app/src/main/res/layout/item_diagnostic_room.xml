@@ -28,7 +28,8 @@
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/logo_onmed" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/interview_center" />
         </androidx.cardview.widget.CardView>
 
         <TextView

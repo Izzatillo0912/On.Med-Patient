@@ -33,6 +33,7 @@
                 android:id="@+id/img_diagnostic_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
                 app:srcCompat="@drawable/logo_onmed" />
         </androidx.cardview.widget.CardView>
 

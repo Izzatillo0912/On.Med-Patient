@@ -11,11 +11,11 @@ data class DiagnosticInfoModel(
     @SerializedName("admin_name")
     val adminName: String,
     @SerializedName("combine_inspections")
-    val combineInspections: List<CombineInspection>,
+    val combineInspections: ArrayList<CombineInspection>,
     @SerializedName("diagnostics_name")
     val diagnosticsName: String,
     @SerializedName("diagnostics_rooms")
-    val diagnosticsRooms: List<DiagnosticsRoom>,
+    val diagnosticsRooms: ArrayList<DiagnosticsRoom>,
     @SerializedName("district")
     val district: District,
     @SerializedName("latitude")

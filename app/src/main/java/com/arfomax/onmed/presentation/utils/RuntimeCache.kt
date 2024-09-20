@@ -1,5 +1,8 @@
 package com.arfomax.onmed.presentation.utils
 
+import com.arfomax.onmed.data.network.diagnosticInfo.model.CombineInspection
+import com.arfomax.onmed.data.network.diagnosticInfo.model.DiagnosticInfoModel
+import com.arfomax.onmed.data.network.diagnostics.model.DiagnosticsModel
 import com.arfomax.onmed.data.network.doctors.model.DoctorInfoModel
 import com.arfomax.onmed.domain.regionsAndDistricts.model.RegionsAndDistrictsModel
 
@@ -19,4 +22,7 @@ object RuntimeCache {
     var doctorInfoModel : DoctorInfoModel? = null
     var doctorWorkDays = ArrayList<String>()
     var myQueueDate = ""
+
+    var diagnosticsModel : DiagnosticsModel? = null
+    var combineInspection : CombineInspection? = null
 }

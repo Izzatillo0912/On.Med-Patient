@@ -35,13 +35,14 @@ class DiagnosticsAdapter : RecyclerView.Adapter<DiagnosticsAdapter.ViewHolder>()
 
             binding.tvDiagnosticName.text = item.diagnosticsName
             binding.tvDiagnosticSpeciality.text = "Tekshiruv turi : ${item.inspectionsCount} ta"
-            binding.tvDiagnosticAddress.text = "${item.region} -> ${item.district}"
+            binding.tvDiagnosticAddress.text = "${item.region.nameUz} -> ${item.district.nameUz}"
 
             binding.btnDiagnosticInfo.setOnClickListener {
                 diagnosticClickListener?.invoke(item)
             }
 
             if (layoutPosition+1 == list.size) binding.root.margin(bottom = 125f)
+            else binding.root.margin(bottom = 8f)
         }
     }
 
