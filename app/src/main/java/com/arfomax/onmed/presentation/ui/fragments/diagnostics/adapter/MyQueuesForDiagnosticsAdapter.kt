@@ -34,7 +34,7 @@ class MyQueuesForDiagnosticsAdapter : RecyclerView.Adapter<MyQueuesForDiagnostic
         fun onBine(item : MyQueuesForDiagnosticsModel) {
 
             binding.tvDoctorName.text = item.diagnosticsInspection.inspection.name
-            binding.tvDoctorSpeciality.text = item.diagnosticsInspection.inspection.name
+            binding.tvDoctorSpeciality.text = item.diagnosticName
             binding.tvQueueNumber.text = item.queueNumber.toString()
 
             binding.btnMyQueueForDiagnostic.setOnClickListener {

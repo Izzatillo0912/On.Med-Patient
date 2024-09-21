@@ -23,6 +23,7 @@ import com.arfomax.onmed.presentation.ui.fragments.diagnostics.viewModels.Diagno
 import com.arfomax.onmed.presentation.ui.fragments.diagnostics.viewModels.MyQueuesForDiagnosticsViewModel
 import com.arfomax.onmed.presentation.ui.utils.EditTextToStateFlow.getDataFromNetWork
 import com.arfomax.onmed.presentation.ui.utils.EditTextToStateFlow.getQueryTextChangeStateFlow
+import com.arfomax.onmed.presentation.ui.utils.SetMargin.margin
 import com.arfomax.onmed.presentation.utils.Constants
 import com.arfomax.onmed.presentation.utils.PageState
 import com.arfomax.onmed.presentation.utils.RuntimeCache
@@ -68,7 +69,18 @@ class DiagnosticsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        myQueueForDiagnosticsViewModel.getMyQueuesForDiagnostics()
+        if (Hawk.get<Boolean>(Constants.USER_VERIFIED) == true){
+            myQueueForDiagnosticsViewModel.getMyQueuesForDiagnostics()
+            binding.tvMyQueueForDiagnostics.visibility = View.VISIBLE
+            binding.rvQueuesForDiagnostics.visibility = View.VISIBLE
+            binding.tvAllDiagnostics.margin(top = 0f)
+        }
+
+        else {
+            binding.tvMyQueueForDiagnostics.visibility = View.GONE
+            binding.rvQueuesForDiagnostics.visibility = View.GONE
+            binding.tvAllDiagnostics.margin(top = 15f)
+        }
 
         binding.btnProfile.setOnClickListener {
             if (Hawk.get<Boolean>(Constants.USER_VERIFIED) == true)
@@ -90,6 +102,7 @@ class DiagnosticsFragment : Fragment() {
 
         myQueuesForDiagnosticsAdapter.queueForDoctorClickListener {
             RuntimeCache.combineInspection = it.diagnosticsInspection
+            RuntimeCache.myQueueDate = it.date.dropLast(9)
             findNavController().navigate(R.id.action_diagnosticsFragment_to_diagnosticQueuesFragment)
         }
 
@@ -147,6 +160,14 @@ class DiagnosticsFragment : Fragment() {
                 actionResultDialog2.dismiss()
                 val data = state.data as PagingModel<MyQueuesForDiagnosticsModel>
                 myQueuesForDiagnosticsAdapter.submitList(data.results)
+                if (data.results.isEmpty()) {
+                    binding.tvAllDiagnostics.margin(top = 10f)
+                    binding.tvMyQueueForDiagnostics.visibility = View.GONE
+                }
+                else {
+                    binding.tvAllDiagnostics.margin(top = 0f)
+                    binding.tvMyQueueForDiagnostics.visibility = View.VISIBLE
+                }
             }
         }
     }

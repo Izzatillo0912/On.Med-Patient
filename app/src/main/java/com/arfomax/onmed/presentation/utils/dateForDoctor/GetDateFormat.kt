@@ -10,7 +10,7 @@ object GetDateFormat {
 
         val calendar = Calendar.getInstance()
 
-        val monthNames = arrayOf("Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr")
+        val monthNames = arrayOf("Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr")
         val monthIndex = monthNames.indexOf(monthName.capitalize(Locale.getDefault()))
 
         val currentMonth = calendar.get(Calendar.MONTH)

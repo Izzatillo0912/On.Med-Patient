@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
@@ -15,12 +16,17 @@ import com.arfomax.doctorOnMed.presentation.ui.dialog.actionResult.ActionResultS
 import com.arfomax.onmed.R
 import com.arfomax.onmed.data.network.queueForDoctor.model.QueuesModel
 import com.arfomax.onmed.databinding.FragmentDiagnosticQueuesBinding
+import com.arfomax.onmed.presentation.ui.bottomSheets.addQueueForInspection.AddQueueForInspectionBottomSheet
+import com.arfomax.onmed.presentation.ui.bottomSheets.deleteQueueForInspection.DeleteQueueForInspectionBottomSheet
 import com.arfomax.onmed.presentation.ui.dialogs.actionResult.ActionResultDialog
 import com.arfomax.onmed.presentation.ui.fragments.diagnosticQueues.viewModels.QueuesForInspectionViewModel
 import com.arfomax.onmed.presentation.ui.fragments.doctorQueues.QueuesAdapter
+import com.arfomax.onmed.presentation.utils.MyPriceFormat
 import com.arfomax.onmed.presentation.utils.PageState
 import com.arfomax.onmed.presentation.utils.RuntimeCache
+import com.arfomax.onmed.presentation.utils.dateForDoctor.GetCurrentDayAndFourthMonthEndDay
 import com.arfomax.onmed.presentation.utils.dateForDoctor.GetDateFormat
+import com.arfomax.onmed.presentation.utils.dateForInspection.DateFormatToSpinner
 import com.arfomax.onmed.presentation.utils.dateForInspection.GetMonths
 import com.arfomax.onmed.presentation.utils.dateForInspection.GetWorkingDays
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
@@ -36,7 +42,7 @@ class DiagnosticQueuesFragment : Fragment() {
     private val queuesForInspectionViewModel : QueuesForInspectionViewModel by viewModels()
     private val queuesAdapter = QueuesAdapter()
     private val inspectionDoctorsAdapter = InspectionDoctorsAdapter()
-    private var workDayInWeak : String = ""
+    private var workDayInWeak : String = RuntimeCache.combineInspection?.workday ?: ""
     private var selectedDate : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,11 +80,25 @@ class DiagnosticQueuesFragment : Fragment() {
             selectedDate = GetDateFormat.getDateFromMonthAndWorkDay(binding.spinnerMonth.text.toString(), newItem)
             queuesForInspectionViewModel.getQueuesForInspections(RuntimeCache.combineInspection?.id ?: 0, selectedDate)
         })
+
+        binding.btnAddQueue.setOnClickListener {
+            Toast.makeText(requireContext(), selectedDate, Toast.LENGTH_SHORT).show()
+            AddQueueForInspectionBottomSheet(queuesForInspectionViewModel,
+                RuntimeCache.combineInspection?.id ?: 0, selectedDate)
+            .show(childFragmentManager, "AddQueueForInspectionBottomSheet")
+        }
+
+        queuesAdapter.deleteClickListener {
+            DeleteQueueForInspectionBottomSheet(it.id, queuesForInspectionViewModel, it.diagnosticsInspection.id,
+                selectedDate).show(childFragmentManager, "DeleteQueueForInspectionBottomSheet")
+        }
     }
 
     @SuppressLint("SetTextI18n")
     private fun setData() {
 
+        binding.tvInspectionPrice.text = "Tekshiruv narxi :" +
+                " ${MyPriceFormat.formattedVolume(RuntimeCache.combineInspection?.price?:0.0)} so'm"
         binding.tvTitle.text = RuntimeCache.combineInspection?.inspection?.name ?: "Navbatlar"
         binding.workDay.text = "Ish kunlari : ${RuntimeCache.combineInspection?.workday ?: "Belgilanmagan"}"
         binding.workTime.text = "Ish vaqti : ${RuntimeCache.combineInspection?.startWorkTime?.dropLast(3)} dan" +
@@ -94,6 +114,18 @@ class DiagnosticQueuesFragment : Fragment() {
         val days = GetWorkingDays.getDaysInMonth(binding.spinnerMonth.text.toString(), workDayInWeak)
         binding.spinnerDay.setItems(days)
         if (days.isNotEmpty()) binding.spinnerDay.selectItemByIndex(0)
+
+        if (RuntimeCache.myQueueDate.isEmpty()) {
+            val monthName = GetMonths.generateNextThreeMonths()[0]
+            selectedDate = GetDateFormat.getDateFromMonthAndWorkDay(monthName,
+                GetWorkingDays.getDaysInMonth(monthName, workDayInWeak)[0])
+        } else {
+            selectedDate = RuntimeCache.myQueueDate
+            RuntimeCache.myQueueDate = ""
+            binding.spinnerMonth.text = DateFormatToSpinner.getMonthName(selectedDate)
+            binding.spinnerDay.text = DateFormatToSpinner.day(selectedDate)
+            queuesForInspectionViewModel.getQueuesForInspections(RuntimeCache.combineInspection?.id ?: 0, selectedDate)
+        }
     }
 
     private fun stateObserve() {
@@ -118,9 +150,7 @@ class DiagnosticQueuesFragment : Fragment() {
             is PageState.IsSuccess -> {
                 actionResultDialog.dismiss()
                 val data = state.data as QueuesModel
-                if (data.results.isNotEmpty()) RuntimeCache.combineInspection = data.results[0].diagnosticsInspection
                 queuesAdapter.submitList(data.results)
-                setData()
             }
         }
     }

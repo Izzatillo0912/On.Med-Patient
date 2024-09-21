@@ -3,10 +3,13 @@ package com.arfomax.onmed.presentation.ui.fragments.diagnosticQueues
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager.LayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.arfomax.onmed.R
 import com.arfomax.onmed.data.network.diagnosticInfo.model.InspectionDoctorModel
 import com.arfomax.onmed.databinding.ItemSelectedDoctorBinding
+import com.arfomax.onmed.presentation.ui.utils.SetMargin.margin
 import com.arfomax.onmed.presentation.utils.Constants
 import com.bumptech.glide.Glide
 
@@ -29,6 +32,11 @@ class InspectionDoctorsAdapter : RecyclerView.Adapter<InspectionDoctorsAdapter.V
 
             binding.doctorName.text = item.firstName + " " + item.lastName
             binding.doctorSpecialityName.text = item.speciality.name
+
+            if (list.size == 1) {
+                binding.root.layoutParams.width = LayoutParams.MATCH_PARENT
+                binding.root.margin(left = 15f, right = 15f)
+            }
         }
     }
 

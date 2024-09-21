@@ -53,7 +53,7 @@
                 android:id="@+id/work_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="1dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="Ish kunlari : Dushanbadan - Jumagacha "
@@ -136,6 +136,10 @@
                 android:hint="15 - kunida navbatlar"
                 android:paddingStart="15dp"
                 android:paddingTop="8dp"
+                app:spinner_divider_color="@color/btn_gray"
+                app:spinner_divider_size="1dp"
+                app:spinner_divider_show="true"
+                app:spinner_popup_height="200dp"
                 android:paddingEnd="15dp"
                 android:paddingBottom="8dp"
                 android:textColor="@color/black"
@@ -156,6 +160,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_day"
@@ -178,20 +183,22 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tv_doctor_price"
+                android:id="@+id/tv_inspection_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="Tekshiruv narxi : 35,000 so'm"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_add_queue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btn_add_queue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -207,70 +214,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_doctor_price" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/customize_queue_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:cardElevation="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tv_doctor_price2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="Ko'rik narxi : 35,000 so'm"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/cancel_queue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="15dp"
-                android:backgroundTint="@color/btn_gray"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="Bekor qilish"
-                android:textColor="#E63329"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_doctor_price2" />
-
-            <Button
-                android:id="@+id/change_day"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="15dp"
-                android:backgroundTint="@color/btn_gray"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="Boshqa kunga ko'shirish"
-                android:textColor="#1573C2"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cancel_queue"
-                app:layout_constraintTop_toBottomOf="@+id/tv_doctor_price2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

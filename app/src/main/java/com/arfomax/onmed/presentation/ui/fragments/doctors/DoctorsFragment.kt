@@ -23,6 +23,7 @@ import com.arfomax.onmed.presentation.ui.fragments.doctors.viewModels.DoctorsVie
 import com.arfomax.onmed.presentation.ui.fragments.doctors.viewModels.MyQueuesForDoctorsViewModel
 import com.arfomax.onmed.presentation.ui.utils.EditTextToStateFlow.getDataFromNetWork
 import com.arfomax.onmed.presentation.ui.utils.EditTextToStateFlow.getQueryTextChangeStateFlow
+import com.arfomax.onmed.presentation.ui.utils.SetMargin.margin
 import com.arfomax.onmed.presentation.utils.Constants
 import com.arfomax.onmed.presentation.utils.PageState
 import com.arfomax.onmed.presentation.utils.RuntimeCache
@@ -69,7 +70,17 @@ class DoctorsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        myQueuesForDoctorsViewModel.getMyQueuesForDoctors()
+        if (Hawk.get<Boolean>(Constants.USER_VERIFIED) == true){
+            myQueuesForDoctorsViewModel.getMyQueuesForDoctors()
+            binding.tvMyQueueForDoctor.visibility = View.VISIBLE
+            binding.rvQueuesForDoctor.visibility = View.VISIBLE
+            binding.tvAllDoctor.margin(top = 0f)
+        }
+        else {
+            binding.tvMyQueueForDoctor.visibility = View.GONE
+            binding.rvQueuesForDoctor.visibility = View.GONE
+            binding.tvAllDoctor.margin(top = 15f)
+        }
 
         binding.btnProfile.setOnClickListener {
             if (Hawk.get<Boolean>(Constants.USER_VERIFIED) == true)

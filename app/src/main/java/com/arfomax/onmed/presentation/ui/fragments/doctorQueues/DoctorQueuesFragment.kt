@@ -2,7 +2,6 @@ package com.arfomax.onmed.presentation.ui.fragments.doctorQueues
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -60,6 +59,7 @@ class DoctorQueuesFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentDoctorQueuesBinding.inflate(inflater, container, false)
         binding.rvQueues.adapter = queuesAdapter
+        binding.tvTitle.text = RuntimeCache.doctorInfoModel?.firstName + " " + RuntimeCache.doctorInfoModel?.lastName
         binding.tvDoctorPrice.text = "Ko'rik narxi : ${MyPriceFormat.formattedVolume(
             RuntimeCache.doctorInfoModel?.price ?: 0.0)} so'm"
 
@@ -77,6 +77,7 @@ class DoctorQueuesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        RuntimeCache.myQueueDate = ""
         queuesForDoctorViewModel.getQueuesForDoctor(doctorId, selectedDate)
 
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
@@ -141,7 +142,7 @@ class DoctorQueuesFragment : Fragment() {
                         if (date == RuntimeCache.myQueueDate) binding.spinnerDay.selectItemByIndex(index)
                     }
                 }
-                else Toast.makeText(requireContext(), "Ish kunlari belgilanmagan!!", Toast.LENGTH_SHORT).show()
+                else binding.spinnerDay.text = "Ish kunlari belgilanmagan"
             }
         }
     }

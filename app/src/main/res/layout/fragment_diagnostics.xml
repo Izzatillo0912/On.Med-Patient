@@ -83,6 +83,7 @@
                 android:text="Tekshiruv turlari uchun kiritilgan navbatlar :"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/et_search"
                 app:layout_constraintTop_toBottomOf="@+id/et_search" />
 
@@ -91,6 +92,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -102,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Barcha diagnostikalar :"
                 android:textColor="@color/black"
