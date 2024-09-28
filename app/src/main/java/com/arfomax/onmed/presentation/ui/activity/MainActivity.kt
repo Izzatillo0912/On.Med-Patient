@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         RuntimeCache.userName = Hawk.get(Constants.USER_NAME) ?: ""
         RuntimeCache.userPhoneNumber = Hawk.get(Constants.PHONE_NUMBER) ?: ""
         RuntimeCache.userRegionName = Hawk.get(Constants.REGION_NAME) ?: ""
+        RuntimeCache.userDistrictName = Hawk.get(Constants.DISTRICT_NAME) ?: ""
         RuntimeCache.userRegionId = Hawk.get(Constants.REGION_ID) ?: 1
         RuntimeCache.userDistrictId = Hawk.get(Constants.DISTRICT_ID) ?: 1
 

@@ -10,6 +10,7 @@ object Constants {
     const val USER_NAME = "patientName"
     const val PHONE_NUMBER = "patientPhoneNumber"
     const val REGION_NAME = "regionName"
+    const val DISTRICT_NAME = "districtName"
     const val REGION_ID = "regionId"
     const val DISTRICT_ID = "districtId"
 

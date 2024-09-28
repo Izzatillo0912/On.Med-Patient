@@ -16,11 +16,13 @@ import com.arfomax.doctorOnMed.presentation.ui.dialog.actionResult.ActionResultS
 import com.arfomax.onmed.R
 import com.arfomax.onmed.data.network.queueForDoctor.model.QueuesModel
 import com.arfomax.onmed.databinding.FragmentDiagnosticQueuesBinding
+import com.arfomax.onmed.presentation.ui.bottomSheets.addQueueForDoctor.AddQueueForDoctorBottomSheet
 import com.arfomax.onmed.presentation.ui.bottomSheets.addQueueForInspection.AddQueueForInspectionBottomSheet
 import com.arfomax.onmed.presentation.ui.bottomSheets.deleteQueueForInspection.DeleteQueueForInspectionBottomSheet
 import com.arfomax.onmed.presentation.ui.dialogs.actionResult.ActionResultDialog
 import com.arfomax.onmed.presentation.ui.fragments.diagnosticQueues.viewModels.QueuesForInspectionViewModel
 import com.arfomax.onmed.presentation.ui.fragments.doctorQueues.QueuesAdapter
+import com.arfomax.onmed.presentation.utils.Constants
 import com.arfomax.onmed.presentation.utils.MyPriceFormat
 import com.arfomax.onmed.presentation.utils.PageState
 import com.arfomax.onmed.presentation.utils.RuntimeCache
@@ -29,6 +31,7 @@ import com.arfomax.onmed.presentation.utils.dateForDoctor.GetDateFormat
 import com.arfomax.onmed.presentation.utils.dateForInspection.DateFormatToSpinner
 import com.arfomax.onmed.presentation.utils.dateForInspection.GetMonths
 import com.arfomax.onmed.presentation.utils.dateForInspection.GetWorkingDays
+import com.orhanobut.hawk.Hawk
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -73,6 +76,10 @@ class DiagnosticQueuesFragment : Fragment() {
                 val days = GetWorkingDays.getDaysInMonth(binding.spinnerMonth.text.toString(), workDayInWeak)
                 binding.spinnerDay.setItems(days)
                 if (days.isNotEmpty()) binding.spinnerDay.selectItemByIndex(0)
+                else {
+                    binding.spinnerDay.text = "Kelgusi oyda"
+                    selectedDate = ""
+                }
             })
 
         binding.spinnerDay.setOnSpinnerItemSelectedListener(OnSpinnerItemSelectedListener<String>{
@@ -82,10 +89,11 @@ class DiagnosticQueuesFragment : Fragment() {
         })
 
         binding.btnAddQueue.setOnClickListener {
-            Toast.makeText(requireContext(), selectedDate, Toast.LENGTH_SHORT).show()
-            AddQueueForInspectionBottomSheet(queuesForInspectionViewModel,
-                RuntimeCache.combineInspection?.id ?: 0, selectedDate)
-            .show(childFragmentManager, "AddQueueForInspectionBottomSheet")
+            if (Hawk.get<Boolean>(Constants.USER_VERIFIED) == true) {
+                AddQueueForInspectionBottomSheet(queuesForInspectionViewModel,
+                    RuntimeCache.combineInspection?.id ?: 0, selectedDate)
+                    .show(childFragmentManager, "AddQueueForInspectionBottomSheet")
+            } else findNavController().navigate(R.id.action_doctorQueuesFragment_to_loginFragment)
         }
 
         queuesAdapter.deleteClickListener {
@@ -117,8 +125,13 @@ class DiagnosticQueuesFragment : Fragment() {
 
         if (RuntimeCache.myQueueDate.isEmpty()) {
             val monthName = GetMonths.generateNextThreeMonths()[0]
-            selectedDate = GetDateFormat.getDateFromMonthAndWorkDay(monthName,
-                GetWorkingDays.getDaysInMonth(monthName, workDayInWeak)[0])
+            if (GetWorkingDays.getDaysInMonth(monthName, workDayInWeak).isEmpty()) {
+                binding.spinnerDay.text = "Kelgusi oyda"
+                selectedDate = ""
+            } else {
+                val firstWorkDay = GetWorkingDays.getDaysInMonth(monthName, workDayInWeak)[0]
+                selectedDate = GetDateFormat.getDateFromMonthAndWorkDay(monthName, firstWorkDay)
+            }
         } else {
             selectedDate = RuntimeCache.myQueueDate
             RuntimeCache.myQueueDate = ""
