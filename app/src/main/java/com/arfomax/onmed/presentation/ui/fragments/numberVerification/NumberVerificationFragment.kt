@@ -2,6 +2,7 @@ package com.arfomax.onmed.presentation.ui.fragments.numberVerification
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -169,15 +170,18 @@ class NumberVerificationFragment : Fragment() {
 
     private fun goMainPage() {
         actionResultDialog.dismiss()
-        val codeList = listOf(binding.code1, binding.code2, binding.code3, binding.code4, binding.code5, binding.code6)
-        lifecycleScope.launch {
-            codeList.forEach { view ->
-                view.setBackgroundResource(R.drawable.sms_code_full_background)
-                if (view == binding.code6) { delay(500)
-                    findNavController().popBackStack()
-                } else delay(80L)
+        val codeList = arrayListOf(binding.code1, binding.code2, binding.code3, binding.code4, binding.code5, binding.code6)
+        object : CountDownTimer(1400, 200) {
+            override fun onTick(millisUntilFinished: Long) {
+                if (codeList.isNotEmpty()) {
+                    codeList[0].setBackgroundResource(R.drawable.sms_code_full_background)
+                    codeList.removeAt(0)
+                }
             }
-        }
-        findNavController().popBackStack()
+            override fun onFinish() {
+                findNavController().popBackStack()
+            }
+
+        }.start()
     }
 }

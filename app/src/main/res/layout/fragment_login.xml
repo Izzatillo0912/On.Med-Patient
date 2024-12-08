@@ -29,6 +29,8 @@
         android:layout_marginBottom="40dp"
         android:src="@drawable/logo_onmed"
         app:layout_constraintBottom_toTopOf="@+id/login_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_back" />
 
     <androidx.cardview.widget.CardView

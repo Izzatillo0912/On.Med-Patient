@@ -28,11 +28,12 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/ripple_radius_50"
+        android:backgroundTint="@color/white"
         android:padding="12dp"
         android:src="@drawable/ic_arrow_left"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white" />
+        app:tint="@color/black" />
 
     <com.skydoves.powerspinner.PowerSpinnerView
         android:id="@+id/spinner_day"

@@ -47,6 +47,7 @@ class DoctorQueuesFragment : Fragment() {
     private var selectedDate : String =
         RuntimeCache.myQueueDate.ifEmpty { GetCurrentDayAndFourthMonthEndDay.get().getValue(1).toString() }
     private var doctorId = RuntimeCache.doctorInfoModel?.id ?: 0
+    private var notSelected = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,11 +90,14 @@ class DoctorQueuesFragment : Fragment() {
         })
 
         binding.btnAddQueue.setOnClickListener {
-            if (Hawk.get<Boolean>(Constants.USER_VERIFIED) == true) {
-                AddQueueForDoctorBottomSheet(queuesForDoctorViewModel, doctorId, selectedDate)
-                    .show(childFragmentManager, "AddQueueForDoctorBottomSheet")
-            } else findNavController().navigate(R.id.action_doctorQueuesFragment_to_loginFragment)
-
+            if (notSelected) {
+                Toast.makeText(requireContext(), "Ish kunlari belgilanmagan!", Toast.LENGTH_SHORT).show()
+            }else {
+                if (Hawk.get<Boolean>(Constants.USER_VERIFIED) == true) {
+                    AddQueueForDoctorBottomSheet(queuesForDoctorViewModel, doctorId, selectedDate)
+                        .show(childFragmentManager, "AddQueueForDoctorBottomSheet")
+                } else findNavController().navigate(R.id.action_doctorQueuesFragment_to_loginFragment)
+            }
         }
 
         queuesAdapter.deleteClickListener {
@@ -137,6 +141,7 @@ class DoctorQueuesFragment : Fragment() {
                 for (i in state.data as ArrayList<GetWorkDay>) RuntimeCache.doctorWorkDays.add(i.workDay)
                 binding.spinnerDay.setItems(GetWorkingDaysForSpinner.formatDates(RuntimeCache.doctorWorkDays))
                 if (RuntimeCache.doctorWorkDays.isNotEmpty()) {
+                    notSelected = false
                     binding.spinnerDay.selectItemByIndex(0)
                     RuntimeCache.doctorWorkDays.forEachIndexed { index, date ->
                         if (date == RuntimeCache.myQueueDate) binding.spinnerDay.selectItemByIndex(index)

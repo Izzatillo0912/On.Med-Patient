@@ -36,6 +36,7 @@ class QueuesMeForDoctorsAdapter : RecyclerView.Adapter<QueuesMeForDoctorsAdapter
 
             binding.tvDoctorName.text = item.doctor.firstName + " " + item.doctor.lastName
             binding.tvDoctorSpeciality.text = item.doctor.speciality?.name ?: "Belgilanmagan"
+            binding.tvQueueNumber.text = item.queueNumber.toString()
 
             binding.myQueueForDoctor.setOnClickListener {
                 queueClickListener?.invoke(item)

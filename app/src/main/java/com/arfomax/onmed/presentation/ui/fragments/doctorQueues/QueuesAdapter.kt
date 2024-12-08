@@ -13,7 +13,6 @@ class QueuesAdapter : RecyclerView.Adapter<QueuesAdapter.ViewHolder>() {
 
     private var queuesList = arrayListOf<QueueModel>()
     private var deleteListener : ((QueueModel) -> Unit)? = null
-    private var visibleBtn = true
 
     @SuppressLint("NotifyDataSetChanged")
     fun submitList(newQueuesList : ArrayList<QueueModel>) {

@@ -34,7 +34,6 @@ class DiagnosticInfoFragment : Fragment() {
     private lateinit var binding: FragmentDiagnosticInfoBinding
     private lateinit var actionResultDialog: ActionResultDialog
     private lateinit var myCustomIndicator: MyCustomIndicator
-    private val roomsAdapter = RoomsAdapter()
     private val inspectionAdapter = InspectionsAdapter()
     private val diagnosticInfoViewModel by viewModels<DiagnosticInfoViewModel>()
 
@@ -48,7 +47,6 @@ class DiagnosticInfoFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentDiagnosticInfoBinding.inflate(inflater, container, false)
-        binding.rvRooms.adapter = roomsAdapter
         binding.rvInspections.adapter = inspectionAdapter
         stateObserver()
         return binding.root
@@ -125,7 +123,6 @@ class DiagnosticInfoFragment : Fragment() {
                 val data = state.data as DiagnosticInfoModel
                 binding.diagnosticName.text = data.diagnosticsName
                 binding.tvAddress.text = "${data.region.nameUz} -> ${data.district.nameUz}\n${data.address}"
-                roomsAdapter.submitList(data.diagnosticsRooms)
                 inspectionAdapter.submitList(data.combineInspections)
             }
         }

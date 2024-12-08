@@ -166,6 +166,11 @@ class DoctorsFragment : Fragment() {
                 actionResultDialog2.dismiss()
                 val data = state.data as QueuesModel
                 queuesMeForDoctorsAdapter.submitList(data.results)
+                if (data.results.isEmpty()) {
+                    binding.tvMyQueueForDoctor.visibility = View.GONE
+                    binding.tvAllDoctor.margin(top = 10f)
+                }
+                else binding.tvMyQueueForDoctor.visibility = View.VISIBLE
             }
         }
     }
