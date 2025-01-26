@@ -22,12 +22,12 @@ class AddQueueForInspectionViewModel @Inject constructor(
     val addQueueState : StateFlow<PageState> get() = mutablePageState
 
     fun addQueue(inspectionId : Int, queueName : String, queueDate : String,
-                 promoCode : String, queueType : String) {
+                 fromDoctor : Int, queueType : String) {
 
         viewModelScope.launch {
             addQueueForInspectionUseCase.addQueue(
                 AddQueueForInspectionModel(
-                queueDate, inspectionId, queueName, promoCode, queueType)
+                queueDate, inspectionId, queueName, fromDoctor, queueType)
             )
 
                 .onStart { mutablePageState.value = PageState.IsLoading("Navbat kiritilmoqda...") }

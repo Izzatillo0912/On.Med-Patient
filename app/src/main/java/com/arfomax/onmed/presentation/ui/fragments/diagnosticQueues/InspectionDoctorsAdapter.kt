@@ -37,6 +37,8 @@ class InspectionDoctorsAdapter : RecyclerView.Adapter<InspectionDoctorsAdapter.V
                 binding.root.layoutParams.width = LayoutParams.MATCH_PARENT
                 binding.root.margin(left = 15f, right = 15f)
             }
+
+            if (layoutPosition == list.lastIndex) binding.root.margin(right = 15f)
         }
     }
 

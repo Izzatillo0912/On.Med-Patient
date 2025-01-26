@@ -26,26 +26,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.santalu.maskara.widget.MaskEditText
-        android:id="@+id/et_promo_code"
+    <com.skydoves.powerspinner.PowerSpinnerView
+        android:id="@+id/queue_type"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/login_rectangle_stroke"
+        android:elegantTextHeight="true"
         android:fontFamily="@font/montserrat_regular"
-        android:hint="Promo kod :"
-        android:inputType="text"
+        android:hint="Onlayn"
         android:paddingStart="15dp"
         android:paddingTop="12dp"
+        android:paddingEnd="15dp"
         android:paddingBottom="12dp"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textColorHint="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/et_name"
         app:layout_constraintStart_toStartOf="@+id/et_name"
         app:layout_constraintTop_toBottomOf="@+id/et_name"
-        app:mask="- - - - - -"
-        app:maskCharacter="-"
-        app:maskStyle="normal" />
+        app:spinner_arrow_gravity="end"
+        app:spinner_arrow_padding="10dp"
+        app:spinner_arrow_tint="@color/black"
+        app:spinner_divider_color="@color/btn_back_24"
+        app:spinner_divider_show="true"
+        app:spinner_divider_size="1dp"
+        app:spinner_popup_animation="bounce"
+        app:spinner_popup_background="@drawable/ripple_radius_14"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <include
+        android:id="@+id/select_doctor"
+        layout="@layout/select_doctor"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/queue_type"
+        app:layout_constraintStart_toStartOf="@+id/queue_type"
+        app:layout_constraintTop_toBottomOf="@+id/queue_type" />
 
     <Button
         android:id="@+id/btn_add_queue"
@@ -61,8 +80,9 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/et_name"
-        app:layout_constraintStart_toStartOf="@+id/et_name"
-        app:layout_constraintTop_toBottomOf="@+id/et_promo_code" />
+        app:layout_constraintEnd_toEndOf="@+id/queue_type"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/queue_type"
+        app:layout_constraintTop_toBottomOf="@+id/select_doctor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@ class AddQueueForInspectionRepositoryImpl @Inject constructor(
     override suspend fun addQueue(addQueueForInspectionModel: AddQueueForInspectionModel): Flow<BaseResult<String, String>> {
         return flow {
             try {
-                val response = if (addQueueForInspectionModel.promoCode.isNotEmpty()) {
+                val response = if (addQueueForInspectionModel.fromDoctor != 0) {
                     addQueueForInspectionApi.addQueue(addQueueForInspectionModel)
                 } else {
                     addQueueForInspectionApi.addQueueNoPromo(AddQueueForInspectionNoPromoModel(

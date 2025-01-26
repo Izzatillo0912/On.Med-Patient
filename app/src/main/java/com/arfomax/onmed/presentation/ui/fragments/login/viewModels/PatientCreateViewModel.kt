@@ -33,6 +33,7 @@ class PatientCreateViewModel @Inject constructor(private val patientCreateUseCas
                         is BaseResult.Error<*> -> mutablePageState.value =
                             PageState.IsError(result.httpError.toString(), "patientCreate")
                     }
+                    mutablePageState.value = PageState.Init
                 }
         }
     }

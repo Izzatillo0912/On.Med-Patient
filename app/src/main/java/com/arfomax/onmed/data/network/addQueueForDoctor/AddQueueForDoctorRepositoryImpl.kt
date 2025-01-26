@@ -14,7 +14,7 @@ class AddQueueForDoctorRepositoryImpl @Inject constructor(
     override suspend fun addQueue(addQueueForDoctorModel: AddQueueForDoctorModel): Flow<BaseResult<String, String>> {
         return flow {
             try {
-                val response = if (addQueueForDoctorModel.promoCode.isNotEmpty()) {
+                val response = if (addQueueForDoctorModel.fromDoctor != 0) {
                     addQueueForDoctorApi.addQueue(addQueueForDoctorModel)
                 } else {
                     addQueueForDoctorApi.addQueueNoPromo(AddQueueForDoctorNoPromoModel(

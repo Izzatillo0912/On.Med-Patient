@@ -75,7 +75,11 @@
         android:id="@+id/diagnosticQueuesFragment"
         android:name="com.arfomax.onmed.presentation.ui.fragments.diagnosticQueues.DiagnosticQueuesFragment"
         android:label="fragment_diagnostic_queues"
-        tools:layout="@layout/fragment_diagnostic_queues" />
+        tools:layout="@layout/fragment_diagnostic_queues" >
+        <action
+            android:id="@+id/action_diagnosticQueuesFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.arfomax.onmed.presentation.ui.fragments.login.LoginFragment"

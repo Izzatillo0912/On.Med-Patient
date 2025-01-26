@@ -1,5 +1,9 @@
 package com.arfomax.onmed.presentation.ui.fragments.login
 
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -81,6 +85,33 @@ class LoginFragment : Fragment() {
             else patientCreate()
         }
 
+        binding.btnCallOperator.setOnClickListener {
+            val i = Intent(Intent.ACTION_VIEW)
+            i.setData(Uri.parse("http://telegram.me/techgeniuzb"))
+            val appName = "org.telegram.messenger"
+            try {
+                if (isAppAvailable(requireActivity().applicationContext, appName)) {
+                    i.setPackage(appName)
+                }
+                startActivity(i)
+            } catch (_: PackageManager.NameNotFoundException) {
+                val phoneIntent = Intent(Intent.ACTION_DIAL).apply {
+                    data = Uri.parse("tel:+998 93 333 66 52") // Telefon raqamingizni kiriting
+                }
+                startActivity(phoneIntent)
+            }
+        }
+
+    }
+
+    private fun isAppAvailable(context: Context, appName: String?): Boolean {
+        val pm = context.packageManager
+        try {
+            pm.getPackageInfo(appName!!, PackageManager.GET_ACTIVITIES)
+            return true
+        } catch (e: Exception) {
+            return false
+        }
     }
 
     private fun adjustImageViewConstraints() {
@@ -144,8 +175,10 @@ class LoginFragment : Fragment() {
     }
 
     private fun patientCreate() {
-        patientCreateViewmodel.createPatientRequest(PatientCreateModel("Farg'ona",
-            RuntimeCache.userDistrictId, RuntimeCache.userName,
-            RuntimeCache.userPhoneNumber, RuntimeCache.userRegionId))
+        patientCreateViewmodel.createPatientRequest(
+            PatientCreateModel("Farg'ona",
+                RuntimeCache.userDistrictId, RuntimeCache.userName,
+                RuntimeCache.userPhoneNumber, RuntimeCache.userRegionId)
+        )
     }
 }

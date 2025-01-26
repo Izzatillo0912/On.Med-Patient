@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.arfomax.onmed.R
 import com.arfomax.onmed.databinding.FragmentSplashBinding
@@ -27,10 +28,13 @@ class SplashFragment : Fragment() {
         object : CountDownTimer(2500, 2500) {
             override fun onTick(millisUntilFinished: Long) {}
             override fun onFinish() {
-                if (Hawk.get<Boolean>(Constants.INTERVIEW) == true) {
-                    findNavController().setGraph(R.navigation.main_nav_graph)
+                if (isAdded && viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
+                    if (Hawk.get<Boolean>(Constants.INTERVIEW) == true) {
+                        findNavController().setGraph(R.navigation.main_nav_graph)
+                    } else {
+                        findNavController().navigate(R.id.action_splashFragment_to_interviewFragment)
+                    }
                 }
-                else findNavController().navigate(R.id.action_splashFragment_to_interviewFragment)
             }
         }.start()
 

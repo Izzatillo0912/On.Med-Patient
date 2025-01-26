@@ -27,5 +27,6 @@ data class DoctorInfoModel(
     @SerializedName("speciality")
     val speciality: SpecialityModel?,
     @SerializedName("description")
-    val description: String
+    val description: String,
+    var selected : Boolean = false
 )

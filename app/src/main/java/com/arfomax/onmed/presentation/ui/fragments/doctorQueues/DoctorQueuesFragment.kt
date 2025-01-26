@@ -2,6 +2,7 @@ package com.arfomax.onmed.presentation.ui.fragments.doctorQueues
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,8 +32,14 @@ import com.arfomax.onmed.presentation.utils.dateForDoctor.GetWorkingDaysForSpinn
 import com.orhanobut.hawk.Hawk
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class DoctorQueuesFragment : Fragment() {
@@ -69,6 +76,7 @@ class DoctorQueuesFragment : Fragment() {
         else {
             binding.spinnerDay.setItems(GetWorkingDaysForSpinner.formatDates(RuntimeCache.doctorWorkDays))
             binding.spinnerDay.selectItemByIndex(0)
+            notSelected = false
         }
 
         stateObserver()
@@ -79,7 +87,18 @@ class DoctorQueuesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         RuntimeCache.myQueueDate = ""
-        queuesForDoctorViewModel.getQueuesForDoctor(doctorId, selectedDate)
+
+        CoroutineScope(Dispatchers.IO + Job()).launch {
+            while(true) {
+                try {
+                    Log.e("QUEUES_FRAGMENT", "getQueuesForInspections: GET")
+                    queuesForDoctorViewModel.getQueuesForDoctor(doctorId, selectedDate)
+                }catch (e : Exception) {
+                    Log.e("QUEUES_FRAGMENT", "getQueuesForInspections: $e")
+                }
+                delay(TimeUnit.SECONDS.toMillis(15))
+            }
+        }
 
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
 

@@ -10,8 +10,8 @@ data class AddQueueForInspectionModel(
     val diagnosticsInspection: Int,
     @SerializedName("fio")
     val fio: String,
-    @SerializedName("promo_code")
-    val promoCode: String,
+    @SerializedName("from_doctor")
+    val fromDoctor: Int,
     @SerializedName("queue_type")
     val queueType: String
 )

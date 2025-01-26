@@ -2,6 +2,7 @@ package com.arfomax.onmed.presentation.ui.fragments.diagnosticQueues
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,8 +35,14 @@ import com.arfomax.onmed.presentation.utils.dateForInspection.GetWorkingDays
 import com.orhanobut.hawk.Hawk
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class DiagnosticQueuesFragment : Fragment() {
@@ -70,6 +77,18 @@ class DiagnosticQueuesFragment : Fragment() {
 
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
 
+        CoroutineScope(Dispatchers.IO + Job()).launch {
+            while(true) {
+                try {
+                    Log.e("QUEUES_FRAGMENT", "getQueuesForInspections: GET")
+                    queuesForInspectionViewModel.getQueuesForInspections(RuntimeCache.combineInspection?.id ?: 0, selectedDate)
+                }catch (e : Exception) {
+                    Log.e("QUEUES_FRAGMENT", "getQueuesForInspections: $e")
+                }
+                delay(TimeUnit.SECONDS.toMillis(15))
+            }
+        }
+
         binding.spinnerMonth.setOnSpinnerItemSelectedListener(
             OnSpinnerItemSelectedListener<String> { _, _, _, _ ->
                 binding.spinnerDay.invalidate()
@@ -85,7 +104,9 @@ class DiagnosticQueuesFragment : Fragment() {
         binding.spinnerDay.setOnSpinnerItemSelectedListener(OnSpinnerItemSelectedListener<String>{
                 _, _, _, newItem ->
             selectedDate = GetDateFormat.getDateFromMonthAndWorkDay(binding.spinnerMonth.text.toString(), newItem)
-            queuesForInspectionViewModel.getQueuesForInspections(RuntimeCache.combineInspection?.id ?: 0, selectedDate)
+            queuesForInspectionViewModel.getQueuesForInspections(
+                RuntimeCache.combineInspection?.id ?: 0, selectedDate
+            )
         })
 
         binding.btnAddQueue.setOnClickListener {
@@ -93,7 +114,7 @@ class DiagnosticQueuesFragment : Fragment() {
                 AddQueueForInspectionBottomSheet(queuesForInspectionViewModel,
                     RuntimeCache.combineInspection?.id ?: 0, selectedDate)
                     .show(childFragmentManager, "AddQueueForInspectionBottomSheet")
-            } else findNavController().navigate(R.id.action_doctorQueuesFragment_to_loginFragment)
+            } else findNavController().navigate(R.id.action_diagnosticQueuesFragment_to_loginFragment)
         }
 
         queuesAdapter.deleteClickListener {
